@@ -1,0 +1,251 @@
+  [1m[35m (9.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (8.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (5.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20220301015059)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20220301015059"]]
+  [1m[36mTRANSACTION (5.3ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreatePhotos (20220301015114)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE TABLE "photos" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" varchar, "date_time" datetime, "file_name" varchar)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20220301015114"]]
+  [1m[36mTRANSACTION (5.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateComments (20220301015122)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE TABLE "comments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" varchar, "photo_id" varchar, "date_time" datetime, "comment_text" text)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20220301015122"]]
+  [1m[36mTRANSACTION (5.5ms)[0m  [1m[36mcommit transaction[0m
+Migrating to LoadData (20220301015604)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mComment Delete All (1.1ms)[0m  [1m[31mDELETE FROM "comments"[0m
+  [1m[36mPhoto Delete All (0.1ms)[0m  [1m[31mDELETE FROM "photos"[0m
+  [1m[36mUser Delete All (0.2ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name") VALUES (?, ?)[0m  [["first_name", "Justin"], ["last_name", "Bieber"]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name") VALUES (?, ?)[0m  [["first_name", "Paris"], ["last_name", "Hilton"]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name") VALUES (?, ?)[0m  [["first_name", "Megan"], ["last_name", "Trainor"]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name") VALUES (?, ?)[0m  [["first_name", "Barack"], ["last_name", "Obama"]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name") VALUES (?, ?)[0m  [["first_name", "Santa"], ["last_name", "Claus"]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name") VALUES (?, ?)[0m  [["first_name", "John"], ["last_name", "Ousterhout"]]
+  [1m[36mPhoto Create (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("user_id", "date_time", "file_name") VALUES (?, ?, ?)[0m  [["user_id", "6"], ["date_time", "2012-08-30 10:44:23"], ["file_name", "ouster.jpg"]]
+  [1m[36mPhoto Create (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("user_id", "date_time", "file_name") VALUES (?, ?, ?)[0m  [["user_id", "1"], ["date_time", "2009-09-13 20:00:00"], ["file_name", "bieber1.jpg"]]
+  [1m[36mPhoto Create (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("user_id", "date_time", "file_name") VALUES (?, ?, ?)[0m  [["user_id", "1"], ["date_time", "2009-09-13 20:05:03"], ["file_name", "bieber2.jpg"]]
+  [1m[36mPhoto Create (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("user_id", "date_time", "file_name") VALUES (?, ?, ?)[0m  [["user_id", "2"], ["date_time", "2013-11-18 18:02:00"], ["file_name", "hilton1.jpg"]]
+  [1m[36mPhoto Create (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("user_id", "date_time", "file_name") VALUES (?, ?, ?)[0m  [["user_id", "2"], ["date_time", "2013-09-20 17:30:00"], ["file_name", "hilton2.jpg"]]
+  [1m[36mPhoto Create (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("user_id", "date_time", "file_name") VALUES (?, ?, ?)[0m  [["user_id", "4"], ["date_time", "2009-07-10 16:02:49"], ["file_name", "obama1.jpg"]]
+  [1m[36mPhoto Create (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("user_id", "date_time", "file_name") VALUES (?, ?, ?)[0m  [["user_id", "4"], ["date_time", "2010-03-18 23:48:00"], ["file_name", "obama2.jpg"]]
+  [1m[36mPhoto Create (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("user_id", "date_time", "file_name") VALUES (?, ?, ?)[0m  [["user_id", "4"], ["date_time", "2010-08-30 14:26:00"], ["file_name", "obama3.jpg"]]
+  [1m[36mPhoto Create (0.2ms)[0m  [1m[32mINSERT INTO "photos" ("user_id", "date_time", "file_name") VALUES (?, ?, ?)[0m  [["user_id", "3"], ["date_time", "2013-12-03 09:02:00"], ["file_name", "megan1.jpg"]]
+  [1m[36mPhoto Create (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("user_id", "date_time", "file_name") VALUES (?, ?, ?)[0m  [["user_id", "3"], ["date_time", "2013-12-03 09:03:00"], ["file_name", "megan2.jpg"]]
+  [1m[36mPhoto Create (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("user_id", "date_time", "file_name") VALUES (?, ?, ?)[0m  [["user_id", "5"], ["date_time", "2013-09-04 09:16:32"], ["file_name", "santa1.jpg"]]
+  [1m[36mPhoto Create (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("user_id", "date_time", "file_name") VALUES (?, ?, ?)[0m  [["user_id", "4"], ["date_time", "2013-10-16 17:12:28"], ["file_name", "obama4.jpg"]]
+  [1m[36mComment Create (0.1ms)[0m  [1m[32mINSERT INTO "comments" ("user_id", "photo_id", "date_time", "comment_text") VALUES (?, ?, ?, ?)[0m  [["user_id", "6"], ["photo_id", "1"], ["date_time", "2012-09-02 14:01:00"], ["comment_text", "Learning new programming languages is hard..."]]
+  [1m[36mComment Create (0.1ms)[0m  [1m[32mINSERT INTO "comments" ("user_id", "photo_id", "date_time", "comment_text") VALUES (?, ?, ?, ?)[0m  [["user_id", "6"], ["photo_id", "1"], ["date_time", "2013-09-06 14:02:00"], ["comment_text", "This is another comment, with a bit more text; if the text gets long enough, does it wrap properly from line to line?"]]
+  [1m[36mComment Create (0.1ms)[0m  [1m[32mINSERT INTO "comments" ("user_id", "photo_id", "date_time", "comment_text") VALUES (?, ?, ?, ?)[0m  [["user_id", "6"], ["photo_id", "1"], ["date_time", "2013-09-08 14:06:00"], ["comment_text", "If you see this text in <b>boldface</b> then HTML escaping isn't working properly."]]
+  [1m[36mComment Create (0.1ms)[0m  [1m[32mINSERT INTO "comments" ("user_id", "photo_id", "date_time", "comment_text") VALUES (?, ?, ?, ?)[0m  [["user_id", "1"], ["photo_id", "2"], ["date_time", "2009-09-14 18:07:00"], ["comment_text", "No, people, she is *not* my mom.  She's my date."]]
+  [1m[36mComment Create (0.1ms)[0m  [1m[32mINSERT INTO "comments" ("user_id", "photo_id", "date_time", "comment_text") VALUES (?, ?, ?, ?)[0m  [["user_id", "6"], ["photo_id", "5"], ["date_time", "2013-11-28 17:45:13"], ["comment_text", "I came up with lots of comments for this photo, but unfortunately none of them are printable."]]
+  [1m[36mComment Create (0.1ms)[0m  [1m[32mINSERT INTO "comments" ("user_id", "photo_id", "date_time", "comment_text") VALUES (?, ?, ?, ?)[0m  [["user_id", "2"], ["photo_id", "7"], ["date_time", "2013-11-02 14:07:00"], ["comment_text", "Hey Barack, great form! Can u give me some bowling tips? xxoo Paris"]]
+  [1m[36mComment Create (0.1ms)[0m  [1m[32mINSERT INTO "comments" ("user_id", "photo_id", "date_time", "comment_text") VALUES (?, ?, ?, ?)[0m  [["user_id", "4"], ["photo_id", "7"], ["date_time", "2013-11-02 14:07:00"], ["comment_text", "Sure, let's get together when Lindsay gets out of rehab and I get healthcare.gov working."]]
+  [1m[36mComment Create (0.1ms)[0m  [1m[32mINSERT INTO "comments" ("user_id", "photo_id", "date_time", "comment_text") VALUES (?, ?, ?, ?)[0m  [["user_id", "4"], ["photo_id", "8"], ["date_time", "2010-09-06 13:59:33"], ["comment_text", "We're off to a Justin Bieber concert"]]
+  [1m[36mComment Create (0.1ms)[0m  [1m[32mINSERT INTO "comments" ("user_id", "photo_id", "date_time", "comment_text") VALUES (?, ?, ?, ?)[0m  [["user_id", "4"], ["photo_id", "12"], ["date_time", "2013-10-16 18:04:55"], ["comment_text", "He kept trying to tell me that healthcare.gov is fixed, but I could see as plain as day that they forgot a </div>. Can anyone tell me why we're building this site in Java instead of Rails?"]]
+  [1m[36mComment Create (0.1ms)[0m  [1m[32mINSERT INTO "comments" ("user_id", "photo_id", "date_time", "comment_text") VALUES (?, ?, ?, ?)[0m  [["user_id", "3"], ["photo_id", "10"], ["date_time", "2013-12-04 13:12:00"], ["comment_text", "To all my fans, I just want to say how Iam all about that base."]]
+  [1m[36mComment Create (0.1ms)[0m  [1m[32mINSERT INTO "comments" ("user_id", "photo_id", "date_time", "comment_text") VALUES (?, ?, ?, ?)[0m  [["user_id", "5"], ["photo_id", "11"], ["date_time", "2013-09-04 10:14:32"], ["comment_text", "I'm going to be watching how well you do in CS 6320!"]]
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20220301015604"]]
+  [1m[36mTRANSACTION (4.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.9ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2022-03-01 10:43:32.208355"], ["updated_at", "2022-03-01 10:43:32.208355"]]
+  [1m[36mTRANSACTION (4.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2022-03-01 02:44:01 -0800
+  [1m[35m (2.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UserController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering user/index.html.erb within layouts/application
+  [1m[36mUser Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/views/user/index.html.erb:3
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1000]]
+  ↳ app/views/user/index.html.erb:13
+  Rendered user/index.html.erb within layouts/application (Duration: 44.6ms | Allocations: 5455)
+  Rendered layout layouts/application.html.erb (Duration: 1000.3ms | Allocations: 90520)
+Completed 500 Internal Server Error in 1311ms (ActiveRecord: 3.4ms | Allocations: 97002)
+
+
+  
+ActionView::Template::Error (Permission denied @ rb_file_s_rename - (C:/Users/STSC.LENOVO-127919/Desktop/websystems/PROJECT_1/R_AWS/tmp/cache/assets/sprockets/v4.0.0/-a/-alSV7gmqJsqEX_ixhE3JAzj1PcKiC-d5uybj3FcPco.cache.21200.14964.49479, C:/Users/STSC.LENOVO-127919/Desktop/websystems/PROJECT_1/R_AWS/tmp/cache/assets/sprockets/v4.0.0/-a/-alSV7gmqJsqEX_ixhE3JAzj1PcKiC-d5uybj3FcPco.cache)):
+  
+sprockets (4.0.2) lib/sprockets/path_utils.rb:362:in `rename'
+sprockets (4.0.2) lib/sprockets/path_utils.rb:362:in `atomic_write'
+sprockets (4.0.2) lib/sprockets/cache/file_store.rb:112:in `set'
+sprockets (4.0.2) lib/sprockets/cache.rb:227:in `set'
+sprockets (4.0.2) lib/sprockets/cache.rb:143:in `set'
+sprockets (4.0.2) lib/sprockets/loader.rb:263:in `store_asset'
+sprockets (4.0.2) lib/sprockets/loader.rb:226:in `load_from_unloaded'
+sprockets (4.0.2) lib/sprockets/loader.rb:59:in `block in load'
+sprockets (4.0.2) lib/sprockets/loader.rb:337:in `fetch_asset_from_dependency_cache'
+sprockets (4.0.2) lib/sprockets/loader.rb:43:in `load'
+sprockets (4.0.2) lib/sprockets/cached_environment.rb:44:in `load'
+sprockets (4.0.2) lib/sprockets/bundle.rb:27:in `call'
+sprockets (4.0.2) lib/sprockets/processor_utils.rb:84:in `call_processor'
+sprockets (4.0.2) lib/sprockets/processor_utils.rb:66:in `block in call_processors'
+sprockets (4.0.2) lib/sprockets/processor_utils.rb:65:in `reverse_each'
+sprockets (4.0.2) lib/sprockets/processor_utils.rb:65:in `call_processors'
+sprockets (4.0.2) lib/sprockets/loader.rb:182:in `load_from_unloaded'
+sprockets (4.0.2) lib/sprockets/loader.rb:59:in `block in load'
+sprockets (4.0.2) lib/sprockets/loader.rb:337:in `fetch_asset_from_dependency_cache'
+sprockets (4.0.2) lib/sprockets/loader.rb:43:in `load'
+sprockets (4.0.2) lib/sprockets/cached_environment.rb:44:in `load'
+sprockets (4.0.2) lib/sprockets/bundle.rb:32:in `block in call'
+C:/Ruby31-x64/lib/ruby/3.1.0/set.rb:511:in `each_key'
+C:/Ruby31-x64/lib/ruby/3.1.0/set.rb:511:in `each'
+sprockets (4.0.2) lib/sprockets/bundle.rb:31:in `call'
+sprockets (4.0.2) lib/sprockets/processor_utils.rb:84:in `call_processor'
+sprockets (4.0.2) lib/sprockets/processor_utils.rb:66:in `block in call_processors'
+sprockets (4.0.2) lib/sprockets/processor_utils.rb:65:in `reverse_each'
+sprockets (4.0.2) lib/sprockets/processor_utils.rb:65:in `call_processors'
+sprockets (4.0.2) lib/sprockets/loader.rb:182:in `load_from_unloaded'
+sprockets (4.0.2) lib/sprockets/loader.rb:59:in `block in load'
+sprockets (4.0.2) lib/sprockets/loader.rb:337:in `fetch_asset_from_dependency_cache'
+sprockets (4.0.2) lib/sprockets/loader.rb:43:in `load'
+sprockets (4.0.2) lib/sprockets/cached_environment.rb:44:in `load'
+sprockets (4.0.2) lib/sprockets/base.rb:81:in `find_asset'
+sprockets (4.0.2) lib/sprockets/base.rb:88:in `find_all_linked_assets'
+sprockets (4.0.2) lib/sprockets/manifest.rb:125:in `block (2 levels) in find'
+concurrent-ruby (1.1.9) lib/concurrent-ruby/concurrent/executor/safe_task_executor.rb:24:in `block in execute'
+concurrent-ruby (1.1.9) lib/concurrent-ruby/concurrent/synchronization/mutex_lockable_object.rb:47:in `block in synchronize'
+concurrent-ruby (1.1.9) lib/concurrent-ruby/concurrent/synchronization/mutex_lockable_object.rb:47:in `synchronize'
+concurrent-ruby (1.1.9) lib/concurrent-ruby/concurrent/synchronization/mutex_lockable_object.rb:47:in `synchronize'
+concurrent-ruby (1.1.9) lib/concurrent-ruby/concurrent/executor/safe_task_executor.rb:19:in `execute'
+concurrent-ruby (1.1.9) lib/concurrent-ruby/concurrent/promise.rb:564:in `block in realize'
+concurrent-ruby (1.1.9) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:363:in `run_task'
+concurrent-ruby (1.1.9) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:352:in `block (3 levels) in create_worker'
+concurrent-ruby (1.1.9) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:335:in `loop'
+concurrent-ruby (1.1.9) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:335:in `block (2 levels) in create_worker'
+concurrent-ruby (1.1.9) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:334:in `catch'
+concurrent-ruby (1.1.9) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:334:in `block in create_worker'
+Started GET "/" for 127.0.0.1 at 2022-03-01 02:44:31 -0800
+  [1m[35m (2.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UserController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering user/index.html.erb within layouts/application
+  [1m[36mUser Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/views/user/index.html.erb:3
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1000]]
+  ↳ app/views/user/index.html.erb:13
+  Rendered user/index.html.erb within layouts/application (Duration: 16.2ms | Allocations: 5322)
+  Rendered layout layouts/application.html.erb (Duration: 258.3ms | Allocations: 34369)
+Completed 200 OK in 315ms (Views: 271.8ms | ActiveRecord: 1.9ms | Allocations: 39429)
+
+
+Started GET "/" for 127.0.0.1 at 2022-03-01 03:06:41 -0800
+  [1m[35m (2.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UserController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering user/index.html.erb within layouts/application
+  [1m[36mUser Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/views/user/index.html.erb:3
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1000]]
+  ↳ app/views/user/index.html.erb:13
+  Rendered user/index.html.erb within layouts/application (Duration: 22.1ms | Allocations: 5322)
+  Rendered layout layouts/application.html.erb (Duration: 189.9ms | Allocations: 30857)
+Completed 200 OK in 230ms (Views: 199.7ms | ActiveRecord: 2.5ms | Allocations: 35917)
+
+
+Started GET "/photos/index/1" for 127.0.0.1 at 2022-03-01 03:06:43 -0800
+Processing by PhotoController#index as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/photo_controller.rb:3:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering photo/index.html.erb within layouts/application
+  [1m[36mPhoto Load (0.7ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."user_id" = ?[0m  [["user_id", "1"]]
+  ↳ app/views/photo/index.html.erb:2:in `each_with_index'
+  [1m[36mComment Load (0.5ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."photo_id" = ?[0m  [["photo_id", "2"]]
+  ↳ app/views/photo/index.html.erb:6:in `each_with_index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/photo/index.html.erb:9
+  [1m[36mComment Load (0.4ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."photo_id" = ?[0m  [["photo_id", "3"]]
+  ↳ app/views/photo/index.html.erb:6:in `each_with_index'
+  Rendered photo/index.html.erb within layouts/application (Duration: 200.9ms | Allocations: 18444)
+  Rendered layout layouts/application.html.erb (Duration: 208.1ms | Allocations: 19648)
+Completed 200 OK in 234ms (Views: 212.1ms | ActiveRecord: 6.7ms | Allocations: 22306)
+
+
+Started GET "/photos/index/1" for 127.0.0.1 at 2022-03-01 03:07:29 -0800
+Processing by PhotoController#index as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/photo_controller.rb:3:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering photo/index.html.erb within layouts/application
+  [1m[36mPhoto Load (0.4ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."user_id" = ?[0m  [["user_id", "1"]]
+  ↳ app/views/photo/index.html.erb:2:in `each_with_index'
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."photo_id" = ?[0m  [["photo_id", "2"]]
+  ↳ app/views/photo/index.html.erb:6:in `each_with_index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/photo/index.html.erb:9
+  [1m[36mComment Load (0.4ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."photo_id" = ?[0m  [["photo_id", "3"]]
+  ↳ app/views/photo/index.html.erb:6:in `each_with_index'
+  Rendered photo/index.html.erb within layouts/application (Duration: 18.2ms | Allocations: 3828)
+  Rendered layout layouts/application.html.erb (Duration: 23.1ms | Allocations: 4830)
+Completed 200 OK in 30ms (Views: 23.8ms | ActiveRecord: 1.6ms | Allocations: 5662)
+
+
+Started GET "/photos/index/2" for 127.0.0.1 at 2022-03-01 03:09:11 -0800
+Processing by PhotoController#index as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/photo_controller.rb:3:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering photo/index.html.erb within layouts/application
+  [1m[36mPhoto Load (0.3ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."user_id" = ?[0m  [["user_id", "2"]]
+  ↳ app/views/photo/index.html.erb:2:in `each_with_index'
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."photo_id" = ?[0m  [["photo_id", "4"]]
+  ↳ app/views/photo/index.html.erb:6:in `each_with_index'
+  [1m[36mComment Load (0.5ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."photo_id" = ?[0m  [["photo_id", "5"]]
+  ↳ app/views/photo/index.html.erb:6:in `each_with_index'
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/photo/index.html.erb:9
+  Rendered photo/index.html.erb within layouts/application (Duration: 20.8ms | Allocations: 3898)
+  Rendered layout layouts/application.html.erb (Duration: 25.4ms | Allocations: 4987)
+Completed 200 OK in 31ms (Views: 24.7ms | ActiveRecord: 2.1ms | Allocations: 5755)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2022-03-01 03:09:23 -0800
+Processing by UserController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering user/index.html.erb within layouts/application
+  [1m[36mUser Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/views/user/index.html.erb:3
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1000]]
+  ↳ app/views/user/index.html.erb:13
+  Rendered user/index.html.erb within layouts/application (Duration: 6.0ms | Allocations: 1454)
+  Rendered layout layouts/application.html.erb (Duration: 12.1ms | Allocations: 2645)
+Completed 200 OK in 16ms (Views: 13.1ms | ActiveRecord: 0.7ms | Allocations: 2931)
+
+
+Started GET "/photos/index/2" for 127.0.0.1 at 2022-03-01 03:09:29 -0800
+Processing by PhotoController#index as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/photo_controller.rb:3:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering photo/index.html.erb within layouts/application
+  [1m[36mPhoto Load (0.5ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."user_id" = ?[0m  [["user_id", "2"]]
+  ↳ app/views/photo/index.html.erb:2:in `each_with_index'
+  [1m[36mComment Load (0.4ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."photo_id" = ?[0m  [["photo_id", "4"]]
+  ↳ app/views/photo/index.html.erb:6:in `each_with_index'
+  [1m[36mComment Load (0.5ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."photo_id" = ?[0m  [["photo_id", "5"]]
+  ↳ app/views/photo/index.html.erb:6:in `each_with_index'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/photo/index.html.erb:9
+  Rendered photo/index.html.erb within layouts/application (Duration: 29.2ms | Allocations: 3864)
+  Rendered layout layouts/application.html.erb (Duration: 61.7ms | Allocations: 4928)
+Completed 200 OK in 72ms (Views: 62.1ms | ActiveRecord: 2.3ms | Allocations: 5711)
+
+

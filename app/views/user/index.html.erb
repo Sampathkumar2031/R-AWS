@@ -1,0 +1,22 @@
+<div style="width: 30%;margin: auto;">
+  <h1>Ruby - AWS Project</h1>
+  <h2>Total Users : <%=@users.count%> </h2>
+
+  <br>
+  <table cellpadding="5" cellspacing="5" id="users">
+    <tr>
+      <th><b>User</b></th>
+      <th><b>First</b></th>
+      <th><b>Last</b></th>
+      <th></th>
+    </tr>
+    <% @users.find_each do |user|%>
+      <tr>
+        <td><%=user.id%></td>
+        <td><%=user.first_name%></td>
+        <td><%=user.last_name%></td>
+        <td><%=link_to("link", "/photos/index/" + user.id.to_s)%></td>
+      </tr>
+    <%end%>
+  </table>
+</div>
